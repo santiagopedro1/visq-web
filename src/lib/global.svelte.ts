@@ -4,7 +4,7 @@ export const global = $state({
 	connecting: false
 });
 
-export const initialNodes: Node[] = $state([
+export const Nodes: Node<{ value: number; name: string }>[] = $state([
 	{
 		id: '1',
 		type: 'custom',
@@ -43,4 +43,12 @@ export const initialNodes: Node[] = $state([
 	}
 ]);
 
-export const initialEdges: Edge[] = $state([]);
+export const Edges: Edge[] = $state([
+	{
+		id: '1->2',
+		type: 'floating',
+		source: '1',
+		target: '2',
+		label: '+'
+	}
+]);
