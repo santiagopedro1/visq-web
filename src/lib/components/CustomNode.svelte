@@ -16,8 +16,10 @@
 	let label = $derived(isTarget ? 'Drop here' : 'Drag to connect');
 </script>
 
-<div class="customNode">
-	<div class="customNodeBody bg-gray-100">
+<div>
+	<div
+		class="relative flex w-32 justify-center overflow-hidden border-3 border-black bg-gray-100 px-0 pt-2 pb-0 font-bold"
+	>
 		{#if !connection.current.inProgress}
 			<Handle
 				class="customHandle {global.connecting ? '' : 'sr-only'}"
@@ -28,7 +30,7 @@
 		{/if}
 
 		<Handle
-			class="customHandle global.connecting ? '' : 'sr-only'}"
+			class="customHandle {global.connecting ? '' : 'sr-only'}"
 			position={Position.Left}
 			type="target"
 			isConnectableStart={false}
@@ -49,17 +51,6 @@
 </div>
 
 <style>
-	.customNodeBody {
-		width: 130px;
-		padding: 8px 0px 0px 0px;
-		border: 3px solid black;
-		position: relative;
-		overflow: hidden;
-		display: flex;
-		justify-content: center;
-		font-weight: bold;
-	}
-
 	:global(div.customHandle) {
 		width: 100%;
 		height: 100%;
