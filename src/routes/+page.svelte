@@ -10,7 +10,7 @@
 
 	import CustomNode from '$lib/components/CustomNode.svelte';
 
-	import { initialNodes, initialEdges } from '$lib/nodes-and-edges';
+	import { initialNodes, initialEdges } from '$lib/global.svelte';
 	import FloatingEdge from '$lib/components/FloatingEdge.svelte';
 
 	import { global } from '$lib/global.svelte';
@@ -29,7 +29,9 @@
 	const defaultEdgeOptions = {
 		type: 'floating',
 		markerEnd: {
-			type: MarkerType.ArrowClosed
+			type: MarkerType.ArrowClosed,
+			width: 20,
+			height: 20
 		}
 	};
 </script>

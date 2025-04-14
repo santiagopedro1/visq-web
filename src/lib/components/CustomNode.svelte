@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { Handle, Position, useConnection, type NodeProps } from '@xyflow/svelte';
 
-	let { id }: NodeProps = $props();
+	import Slider from '$lib/components/Slider.svelte';
+
+	let { id, data }: NodeProps = $props();
 
 	import { global } from '$lib/global.svelte';
 
@@ -11,11 +13,11 @@
 		connection.current.inProgress && connection.current.fromHandle?.nodeId !== id
 	);
 
-	let label = $derived(global.connecting ? (isTarget ? 'Drop here' : 'Drag to connect') : 'Move');
+	let label = $derived(isTarget ? 'Drop here' : 'Drag to connect');
 </script>
 
 <div class="customNode">
-	<div class="customNodeBody">
+	<div class="customNodeBody bg-gray-100">
 		{#if !connection.current.inProgress}
 			<Handle
 				class="customHandle {global.connecting ? '' : 'sr-only'}"
@@ -32,21 +34,29 @@
 			isConnectableStart={false}
 		/>
 
-		{label}
+		<div class="flex w-full flex-col items-center gap-1 text-center">
+			<div class="h-8 w-full text-center">
+				{#if global.connecting}
+					{label}
+				{:else}
+					<Slider bind:value={data.value} />
+					<span class="text-xs">{data.value}</span>
+				{/if}
+			</div>
+			{data.name}
+		</div>
 	</div>
 </div>
 
 <style>
 	.customNodeBody {
-		width: 150px;
-		height: 80px;
+		width: 130px;
+		padding: 8px 0px 0px 0px;
 		border: 3px solid black;
 		position: relative;
 		overflow: hidden;
-		border-radius: 10px;
 		display: flex;
 		justify-content: center;
-		align-items: center;
 		font-weight: bold;
 	}
 
