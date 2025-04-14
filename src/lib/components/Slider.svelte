@@ -17,7 +17,10 @@
 			<span class="bg-dark-10 relative h-2 w-full grow cursor-pointer overflow-hidden">
 				<Slider.Range class="absolute h-full " />
 			</span>
-			<Slider.Thumb index={0} class="h-5 w-1.5 cursor-pointer bg-black" />
+			<Slider.Thumb
+				index={0}
+				class="h-5 w-1.5 cursor-pointer bg-black"
+			/>
 		{/snippet}
 	</Slider.Root>
 </div>

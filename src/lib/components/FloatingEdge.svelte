@@ -22,4 +22,8 @@
 	});
 </script>
 
-<BaseEdge {id} {path} {markerEnd} />
+<BaseEdge
+	{id}
+	{path}
+	{markerEnd}
+/>

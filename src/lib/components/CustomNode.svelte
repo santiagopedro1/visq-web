@@ -9,9 +9,7 @@
 
 	const connection = useConnection();
 
-	let isTarget = $derived(
-		connection.current.inProgress && connection.current.fromHandle?.nodeId !== id
-	);
+	let isTarget = $derived(connection.current.inProgress && connection.current.fromHandle?.nodeId !== id);
 
 	let label = $derived(isTarget ? 'Drop here' : 'Drag to connect');
 </script>

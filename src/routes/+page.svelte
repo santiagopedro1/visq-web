@@ -1,12 +1,5 @@
 <script lang="ts">
-	import {
-		ConnectionLineType,
-		MarkerType,
-		SvelteFlow,
-		Background,
-		type Node,
-		type Edge
-	} from '@xyflow/svelte';
+	import { ConnectionLineType, MarkerType, SvelteFlow, Background, type Node, type Edge } from '@xyflow/svelte';
 
 	import CustomNode from '$lib/components/CustomNode.svelte';
 
