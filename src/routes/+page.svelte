@@ -1,5 +1,13 @@
 <script lang="ts">
-	import { ConnectionLineType, MarkerType, SvelteFlow, Background, type Node, type Edge } from '@xyflow/svelte';
+	import {
+		ConnectionLineType,
+		MarkerType,
+		SvelteFlow,
+		Background,
+		type Node,
+		type Edge,
+		type Connection
+	} from '@xyflow/svelte';
 
 	import CustomNode from '$lib/components/CustomNode.svelte';
 
@@ -27,14 +35,38 @@
 			}
 		},
 		connectionLineType: ConnectionLineType.Straight,
-		fitView: true
+		fitView: true,
+		onconnect: (conn: Connection) => {
+			const edge = edges.find((e) => e.source === conn.source && e.target === conn.target);
+			if (edge) edge.label = global.connectionSignal;
+		}
 	};
+
+	function handleConnectionButtonClick(event: MouseEvent) {
+		const button = event.currentTarget as HTMLButtonElement;
+		const signal = button.id as '+' | '-';
+
+		if (global.connectionSignal === signal) global.isConnecting = !global.isConnecting;
+		else global.isConnecting = true;
+
+		global.connectionSignal = signal;
+	}
 </script>
 
 <div class="flex items-center justify-center gap-8">
 	<button
-		class="cursor-pointer p-2 text-xl text-white {global.connecting ? 'bg-green-500' : 'bg-black'}"
-		onclick={() => (global.connecting = !global.connecting)}>toggle connecting</button
+		id="+"
+		class="cursor-pointer p-2 text-xl text-white {global.isConnecting && global.connectionSignal === '+'
+			? 'bg-green-500'
+			: 'bg-black'}"
+		onclick={handleConnectionButtonClick}>Connect +</button
+	>
+	<button
+		id="-"
+		class="cursor-pointer p-2 text-xl text-white {global.isConnecting && global.connectionSignal === '-'
+			? 'bg-green-500'
+			: 'bg-black'}"
+		onclick={handleConnectionButtonClick}>Connect -</button
 	>
 </div>
 

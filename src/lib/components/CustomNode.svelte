@@ -20,7 +20,7 @@
 	>
 		{#if !connection.current.inProgress}
 			<Handle
-				class="customHandle {global.connecting ? '' : 'sr-only'}"
+				class="customHandle {global.isConnecting ? '' : 'sr-only'}"
 				position={Position.Right}
 				type="source"
 				style="z-index: 1;"
@@ -28,7 +28,7 @@
 		{/if}
 
 		<Handle
-			class="customHandle {global.connecting ? '' : 'sr-only'}"
+			class="customHandle {global.isConnecting ? '' : 'sr-only'}"
 			position={Position.Left}
 			type="target"
 			isConnectableStart={false}
@@ -36,7 +36,7 @@
 
 		<div class="flex w-full flex-col items-center gap-1 text-center">
 			<div class="h-8 w-full text-center">
-				{#if global.connecting}
+				{#if global.isConnecting}
 					{label}
 				{:else}
 					<Slider bind:value={data.value} />

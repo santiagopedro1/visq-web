@@ -1,7 +1,8 @@
 import type { Node, Edge } from '@xyflow/svelte';
 
 export const global = $state({
-	connecting: false
+	isConnecting: false,
+	connectionSignal: '' as '+' | '-'
 });
 
 export const Nodes: Node<{ value: number; name: string }>[] = $state([
@@ -43,12 +44,4 @@ export const Nodes: Node<{ value: number; name: string }>[] = $state([
 	}
 ]);
 
-export const Edges: Edge[] = $state([
-	{
-		id: '1->2',
-		type: 'floating',
-		source: '1',
-		target: '2',
-		label: '+'
-	}
-]);
+export const Edges: Edge[] = $state([]);
